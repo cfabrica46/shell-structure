@@ -1,11 +1,9 @@
 #!/bin/bash
 
-while getopts ":d g" opt; do
+while getopts ":d: g" opt; do
     case $opt in
     d)
-        echo $OPTARG
-        path=$(pwd)/$OPTARG/
-        echo $OPTARG
+        path=$OPTARG/
         ;;
     g)
         go="1"
@@ -27,10 +25,8 @@ if [ ! -e "$path" ]; then
     exit 2
 fi
 
-echo "$path"
-
 if [ ! -z $go ]; then
-    cat >${path}/main.go <<limite
+    cat >./test/main.go <<limite
 package main
 
 import(
